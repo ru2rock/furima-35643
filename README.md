@@ -1,24 +1,61 @@
-# README
+# DB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column                | Type   | Option      |
+|-----------------------|--------|-------------|
+| nickname              | string | null: false |
+| email                 | string | null: false | 
+| password              | string | null: false |
+| name                  | string | null: false |
 
-* Ruby version
 
-* System dependencies
+null: false, foreign_key: true
 
-* Configuration
+### Association
 
-* Database creation
+- has_many: items
+- has_many: purchases 
 
-* Database initialization
+## items table
 
-* How to run the test suite
+| Column      | Type       | Option            |
+|-------------|------------|-------------------|
+| title       | string     | null: false       |
+| description | text       | null: false       |
+| price       | integer    | null: false       |
+| user        | references | foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
 
-* Deployment instructions
+- has_one: purchase
+- belongs_to: user
 
-* ...
+
+## purchases table
+
+| Column  | Type       | Option            |
+|---------|------------|-------------------|
+| user    | references | foreign_key: true |
+| item    | references | foreign_key: true |
+
+
+### Association
+
+- has_one: address
+- belongs_to: user
+
+## addresses table
+
+| Column       | Type       | Option            |
+|--------------|------------|-------------------|
+| postal_code  | char(8)    | null: false       |
+| town         | string     | null: false       |
+| plot_number  | string     | null: false       |
+| building     | string     |                   |
+| phone_number | char(11)   | null: false       |
+| item         | references | foreign_key: true |
+
+### Association
+
+- belongs_to: purchase
