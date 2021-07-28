@@ -2,12 +2,13 @@
 
 ## users table
 
-| Column                | Type   | Option      |
-|-----------------------|--------|-------------|
-| nickname              | string | null: false |
-| email                 | string | null: false | 
-| password              | string | null: false |
-| name                  | string | null: false |
+| Column                | Type    | Option      |
+|-----------------------|---------|-------------|
+| nickname              | string  | null: false |
+| email                 | string  | null: false | 
+| password              | string  | null: false |
+| name                  | string  | null: false |
+| birthday              | integer | null: false |
 
 
 null: false, foreign_key: true
@@ -19,12 +20,17 @@ null: false, foreign_key: true
 
 ## items table
 
-| Column      | Type       | Option            |
-|-------------|------------|-------------------|
-| title       | string     | null: false       |
-| description | text       | null: false       |
-| price       | integer    | null: false       |
-| user        | references | foreign_key: true |
+| Column        | Type       | Option            |
+|---------------|------------|-------------------|
+| title         | string     | null: false       |
+| description   | text       | null: false       |
+| category      | integer    | null: false       |
+| item_status   | integer    | null: false       |
+| deliver_fee   | integer    | null: false       |
+| sender_region | integer    | null: false       |
+| delivery_days | integer    | null: false       |
+| price         | integer    | null: false       |
+| user          | references | foreign_key: true |
 
 ### Association
 
@@ -50,6 +56,7 @@ null: false, foreign_key: true
 | Column       | Type       | Option            |
 |--------------|------------|-------------------|
 | postal_code  | char(8)    | null: false       |
+| prefecture   | integer    | null: false       |
 | town         | string     | null: false       |
 | plot_number  | string     | null: false       |
 | building     | string     |                   |
