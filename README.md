@@ -11,7 +11,7 @@
 | last_name             | string  | null: false  |
 | first_name_kana       | string  | null: false  |
 | last_name _kana       | string  | null: false  |
-| birthday              | integer | null: false  |
+| birthday_id           | integer | null: false  |
 
 
 ### Association
@@ -54,15 +54,15 @@
 
 ## addresses table
 
-| Column       | Type       | Option            |
-|--------------|------------|-------------------|
-| postal_code  | char(8)    | null: false       |
-| prefecture   | integer    | null: false       |
-| town         | string     | null: false       |
-| plot_number  | string     | null: false       |
-| building     | string     |                   |
-| phone_number | char(11)   | null: false       |
-| item         | references | foreign_key: true |
+| Column    -   | Type       | Option            |
+|---------------|------------|-------------------|
+| postal_code   | char(8)    | null: false       |
+| prefecture_id | integer    | null: false       |
+| town          | string     | null: false       |
+| plot_number   | string     | null: false       |
+| building      | string     |                   |
+| phone_number  | char(11)   | null: false       |
+| item          | references | foreign_key: true |
 
 ### Association
 
