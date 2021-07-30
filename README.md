@@ -2,16 +2,16 @@
 
 ## users table
 
-| Column                | Type    | Option      |
-|-----------------------|---------|-------------|
-| nickname              | string  | null: false |
-| email                 | string  | null: false | 
-| password              | string  | null: false |
-| first_name            | string  | null: false |
-| last_name             | string  | null: false |
-| first_name_kana       | string  | null: false |
-| last_name _kana       | string  | null: false |
-| birthday              | integer | null: false |
+| Column                | Type    | Option       |
+|-----------------------|---------|--------------|
+| nickname              | string  | null: false  |
+| email                 | string  | unique: true | 
+| encrypted_password    | string  | null: false  |
+| first_name            | string  | null: false  |
+| last_name             | string  | null: false  |
+| first_name_kana       | string  | null: false  |
+| last_name _kana       | string  | null: false  |
+| birthday              | integer | null: false  |
 
 
 ### Association
@@ -21,17 +21,17 @@
 
 ## items table
 
-| Column        | Type       | Option            |
-|---------------|------------|-------------------|
-| title         | string     | null: false       |
-| description   | text       | null: false       |
-| category      | integer    | null: false       |
-| item_status   | integer    | null: false       |
-| deliver_fee   | integer    | null: false       |
-| sender_region | integer    | null: false       |
-| delivery_days | integer    | null: false       |
-| price         | integer    | null: false       |
-| user          | references | foreign_key: true |
+| Column           | Type       | Option            |
+|------------------|------------|-------------------|
+| title            | string     | null: false       |
+| description      | text       | null: false       |
+| category_id      | integer    | null: false       |
+| item_status_id   | integer    | null: false       |
+| deliver_fee_id   | integer    | null: false       |
+| sender_region_id | integer    | null: false       |
+| delivery_days_id | integer    | null: false       |
+| price            | integer    | null: false       |
+| user             | references | foreign_key: true |
 
 ### Association
 
