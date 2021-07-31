@@ -27,7 +27,7 @@
 | description      | text       | null: false       |
 | category_id      | integer    | null: false       |
 | item_status_id   | integer    | null: false       |
-| deliver_fee_id   | integer    | null: false       |
+| delivery_fee_id  | integer    | null: false       |
 | prefecture_id    | integer    | null: false       |
 | delivery_days_id | integer    | null: false       |
 | price            | integer    | null: false       |
@@ -55,7 +55,7 @@
 
 ## addresses table
 
-| Column    -   | Type       | Option            |
+| Column        | Type       | Option            |
 |---------------|------------|-------------------|
 | postal_code   | string     | null: false       |
 | prefecture_id | integer    | null: false       |
