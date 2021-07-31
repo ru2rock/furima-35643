@@ -1,24 +1,70 @@
-# README
+# DB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column                | Type    | Option                    |
+|-----------------------|---------|---------------------------|
+| nickname              | string  | null: false               |
+| email                 | string  | null: false, unique: true | 
+| encrypted_password    | string  | null: false               |
+| first_name            | string  | null: false               |
+| last_name             | string  | null: false               |
+| first_name_kana       | string  | null: false               |
+| last_name _kana       | string  | null: false               |
+| birthday_id           | date    | null: false               |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many: items
+- has_many: purchases 
 
-* Database creation
+## items table
 
-* Database initialization
+| Column           | Type       | Option            |
+|------------------|------------|-------------------|
+| title            | string     | null: false       |
+| description      | text       | null: false       |
+| category_id      | integer    | null: false       |
+| item_status_id   | integer    | null: false       |
+| deliver_fee_id   | integer    | null: false       |
+| prefecture_id    | integer    | null: false       |
+| delivery_days_id | integer    | null: false       |
+| price            | integer    | null: false       |
+| user             | references | foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_one: purchase
+- belongs_to: user
 
-* Deployment instructions
 
-* ...
+## purchases table
+
+| Column  | Type       | Option            |
+|---------|------------|-------------------|
+| user    | references | foreign_key: true |
+| item    | references | foreign_key: true |
+
+
+### Association
+
+- has_one: address
+- belongs_to: user
+- belongs_to: item
+
+## addresses table
+
+| Column    -   | Type       | Option            |
+|---------------|------------|-------------------|
+| postal_code   | string     | null: false       |
+| prefecture_id | integer    | null: false       |
+| town          | string     | null: false       |
+| plot_number   | string     | null: false       |
+| building      | string     |                   |
+| phone_number  | string     | null: false       |
+| purchase      | references | foreign_key: true |
+
+### Association
+
+- belongs_to: purchase
