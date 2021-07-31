@@ -28,7 +28,7 @@
 | category_id      | integer    | null: false       |
 | item_status_id   | integer    | null: false       |
 | deliver_fee_id   | integer    | null: false       |
-| sender_region_id | integer    | null: false       |
+| prefecture_id    | integer    | null: false       |
 | delivery_days_id | integer    | null: false       |
 | price            | integer    | null: false       |
 | user             | references | foreign_key: true |
@@ -63,7 +63,7 @@
 | plot_number   | string     | null: false       |
 | building      | string     |                   |
 | phone_number  | string     | null: false       |
-| item          | references | foreign_key: true |
+| purchase      | references | foreign_key: true |
 
 ### Association
 
