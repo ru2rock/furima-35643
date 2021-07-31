@@ -2,16 +2,16 @@
 
 ## users table
 
-| Column                | Type    | Option       |
-|-----------------------|---------|--------------|
-| nickname              | string  | null: false  |
-| email                 | string  | unique: true | 
-| encrypted_password    | string  | null: false  |
-| first_name            | string  | null: false  |
-| last_name             | string  | null: false  |
-| first_name_kana       | string  | null: false  |
-| last_name _kana       | string  | null: false  |
-| birthday_id           | integer | null: false  |
+| Column                | Type    | Option                    |
+|-----------------------|---------|---------------------------|
+| nickname              | string  | null: false               |
+| email                 | string  | null: false, unique: true | 
+| encrypted_password    | string  | null: false               |
+| first_name            | string  | null: false               |
+| last_name             | string  | null: false               |
+| first_name_kana       | string  | null: false               |
+| last_name _kana       | string  | null: false               |
+| birthday_id           | date    | null: false               |
 
 
 ### Association
@@ -51,17 +51,18 @@
 
 - has_one: address
 - belongs_to: user
+- belongs_to: item
 
 ## addresses table
 
 | Column    -   | Type       | Option            |
 |---------------|------------|-------------------|
-| postal_code   | char(8)    | null: false       |
+| postal_code   | string     | null: false       |
 | prefecture_id | integer    | null: false       |
 | town          | string     | null: false       |
 | plot_number   | string     | null: false       |
 | building      | string     |                   |
-| phone_number  | char(11)   | null: false       |
+| phone_number  | string     | null: false       |
 | item          | references | foreign_key: true |
 
 ### Association
