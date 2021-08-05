@@ -14,11 +14,11 @@ class User < ApplicationRecord
   validates :birthday
   end
   with_options format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/} do
-  validates :first_name, {message: "First name is invalid. Input full-width characters"}
-  validates :last_name, {message: "Last name is invalid. Input full-width characters"}
+  validates :first_name
+  validates :last_name
   end
   with_options format: {with: /\A[ァ-ヶー－]+\z/} do
-  validates :first_name_kana, {message: "First name kana is invalid. Input full-width katakana characters"}
-  validates :last_name_kana, {message: "Last name kana is invalid. Input full-width katakana characters"}
+  validates :first_name_kana
+  validates :last_name_kana
   end
 end

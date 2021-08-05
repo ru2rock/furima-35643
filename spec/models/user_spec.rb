@@ -124,22 +124,22 @@ RSpec.describe User, type: :model do
       it "first_nameが全角入力でなければ登録できない" do
         @user.first_name = 'taro' #first_nameを意図的に半角にする
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name First name is invalid. Input full-width characters")
+        expect(@user.errors.full_messages).to include("First name is invalid")
       end
       it "last_nameが全角入力でなければ登録できない" do
         @user.last_name = 'yamada' #last_nameを意図的に半角にする
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name Last name is invalid. Input full-width characters")
+        expect(@user.errors.full_messages).to include("Last name is invalid")
       end
       it "first_name_kanaが全角カタカナでなければ登録できない" do
         @user.first_name_kana = 'taro' #first_name_kanaを意図的に半角にする
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana First name kana is invalid. Input full-width katakana characters")
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
       it "last_name_kanaが全角カタカナでなければ登録できない" do
         @user.last_name_kana = 'yamada' #last_name_kanaを意図的に半角にする
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana Last name kana is invalid. Input full-width katakana characters")
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
     end
   end
