@@ -1,7 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create] 
+  #application_controllerではなく、items_controllerni記述する。
+  # only: [:new]だけでなく、:createも記述することで、不正にアクセスした場合のセキュリティもカバーすることができる
 
   def index
+    @items = Item.all
     #@items = Item.order("created_at DESC")
   end
 
