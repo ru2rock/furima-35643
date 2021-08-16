@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   # only: [:new]だけでなく、:createも記述することで、不正にアクセスした場合のセキュリティもカバーすることができる
 
   def index
-    @items = Item.all
     @items = Item.order('created_at DESC')
   end
 
