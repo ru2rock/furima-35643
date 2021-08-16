@@ -71,7 +71,7 @@ RSpec.describe Item, type: :model do
       it '販売価格が半角数字でなければ保存できない' do
         @item.price = "２２２２"
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number")
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
       it 'userが紐付いていなければ出品できない' do
         @item.user = nil
@@ -81,12 +81,12 @@ RSpec.describe Item, type: :model do
       it '価格が半角英数混合では登録できない' do
         @item.price = 'asd123'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number")
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
       it '価格が半角英語だけでは登録できない' do
         @item.price = 'asder'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number")
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
     end
   end
