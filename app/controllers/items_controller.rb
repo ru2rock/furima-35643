@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create] 
-  #application_controllerではなく、items_controllerni記述する。
+  before_action :authenticate_user!, only: [:new, :create]
+  # application_controllerではなく、items_controllerni記述する。
   # only: [:new]だけでなく、:createも記述することで、不正にアクセスした場合のセキュリティもカバーすることができる
 
   def index
     @items = Item.all
-    #@items = Item.order("created_at DESC")
+    @items = Item.order('created_at DESC')
   end
 
   def new
@@ -22,8 +22,9 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
-    params.require(:item).permit(:title, :description, :image, :category_id, :delivery_days_id, :delivery_fee_id, :prefecture_id, :item_status_id, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:title, :description, :image, :category_id, :delivery_days_id, :delivery_fee_id, :prefecture_id,
+                                 :item_status_id, :price).merge(user_id: current_user.id)
   end
-    
 end
