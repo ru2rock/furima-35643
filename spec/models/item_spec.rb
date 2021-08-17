@@ -49,7 +49,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Prefecture Select')
       end
       it '発送までの日数が選択されていなければ出品できない' do
-        @item.delivery_days_id = 1
+        @item.delivery_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery days Select')
       end
