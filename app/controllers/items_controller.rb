@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :user_confirmation, only: [:edit, :update]
   # application_controllerではなく、items_controllerni記述する。
   # only: [:new]だけでなく、:createも記述することで、不正にアクセスした場合のセキュリティもカバーすることができる
 
@@ -24,11 +25,28 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    redirect_to root_path unless current_user.id == @item.user_id
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
+  end
 
   private
 
   def item_params
     params.require(:item).permit(:title, :description, :image, :category_id, :delivery_day_id, :delivery_fee_id, :prefecture_id,
                                  :item_status_id, :price).merge(user_id: current_user.id)
+  end
+
+  def user_confirmation
+    #redirect_to root_path unless current_user == @item.user
   end
 end
