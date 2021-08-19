@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :user_confirmation, only: [:edit, :update]
   # application_controllerではなく、items_controllerni記述する。
   # only: [:new]だけでなく、:createも記述することで、不正にアクセスした場合のセキュリティもカバーすることができる
 
@@ -46,7 +45,4 @@ class ItemsController < ApplicationController
                                  :item_status_id, :price).merge(user_id: current_user.id)
   end
 
-  def user_confirmation
-    #redirect_to root_path unless current_user == @item.user
-  end
 end
