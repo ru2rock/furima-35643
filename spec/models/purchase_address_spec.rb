@@ -46,14 +46,14 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'postal_codeは半角のハイフンを含んだ正しい形でなければ保存できない' do
-        @purchase_address.phone_number = '1234567'
+        @purchase_address.postal_code = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number has to be Half-width")
+        expect(@purchase_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
       it 'phone_numberは半角でなければ保存できない' do
         @purchase_address.phone_number = '１２３４５６７８９'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Phone number has to be Half-width')
+        expect(@purchase_address.errors.full_messages).to include('Phone number has to be Half-width. Has to be over 9 to 12 digit')
       end
 
       it 'userが紐づいていないと保存できない' do
@@ -71,7 +71,21 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
       end
-
+      it '電話番号が9桁以下では購入できない' do
+        @purchase_address.phone_number = '12345678'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number has to be Half-width. Has to be over 9 to 12 digit")
+      end
+      it '電話番号が12桁以上では購入できない' do
+        @purchase_address.phone_number = '1234567891011'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number has to be Half-width. Has to be over 9 to 12 digit")
+      end
+      it '電話番号に半角数字以外が含まれている場合は購入できない' do
+        @purchase_address.phone_number = '090-1234-5678'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number Input only number")
+      end
     end
   end
 end

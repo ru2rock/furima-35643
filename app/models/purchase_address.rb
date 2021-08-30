@@ -1,6 +1,6 @@
 class PurchaseAddress
   include ActiveModel::Model #通常のモデルのようにvalidationを使えるようにする
-  attr_accessor :item_id, :user_id, :purchase_id, :postal_code, :prefecture_id, :town, :plot_number, :building, :phone_number, :token
+  attr_accessor :item_id, :user_id, :postal_code, :prefecture_id, :town, :plot_number, :building, :phone_number, :token
   #フォームで保存したい各テーブルのカラム名全てを記述
   # ActiveHashの記述は要らない
 
@@ -12,7 +12,7 @@ class PurchaseAddress
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :town
     validates :plot_number
-    validates :phone_number, numericality: { only_integer:true }, format: {with: /\A[0-9]{11}\z/, message: 'has to be Half-width' }
+    validates :phone_number, numericality: { only_integer:true, message: "Input only number" }, format: {with: /\A[0-9]{11}\z/, message: 'has to be Half-width. Has to be over 9 to 12 digit'}
   end
 
   def save
