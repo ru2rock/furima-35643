@@ -4,15 +4,15 @@ class PurchaseAddress
   #フォームで保存したい各テーブルのカラム名全てを記述
   # ActiveHashの記述は要らない
 
-  validates :prefecture_id, presence: true, numericality: {other_than: 1, message:"can't be blank"}
+  validates :prefecture_id, presence: true, numericality: {other_than: 1, message:"を入力してください"}
   with_options presence: true do
     validates :token
     validates :item_id
     validates :user_id
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "は不正な値です。ハイフンを含めてください"}
     validates :town
     validates :plot_number
-    validates :phone_number, numericality: { only_integer:true, message: "Input only number" }, format: {with: /\A[0-9]{11}\z/, message: 'has to be Half-width. Has to be over 9 to 12 digit'}
+    validates :phone_number, numericality: { only_integer:true, message: "は数字のみで入力してください" }, format: {with: /\A[0-9]{11}\z/, message: 'は9桁から１２桁の半角で入力してください' }
   end
 
   def save
