@@ -122,13 +122,16 @@
       <li class='list'>
         <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
-            <%= image_tag item.image, class: "item-img" %>
+            <% item.images.each do |image| %>
+              <%= image_tag image, class: "item-imgs" %>
+            <% end %>
 
             <%if item.purchase.present? %>
             <div class='sold-out'>
               <span>Sold Out!!</span>
             </div>
             <% end %>
+
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
