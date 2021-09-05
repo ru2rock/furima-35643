@@ -16,11 +16,11 @@ class Item < ApplicationRecord
     validates :description
   end
 
-  validates :price, presence: true, format: { with: /\A[0-9]+\z/, message: 'Half-width number' }
+  validates :price, presence: true, format: { with: /\A[0-9]+\z/, message: 'を半角で入力してください' }
   validates :price,
-            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
+            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'は設定範囲外の値です' }
 
-  with_options presence: true, numericality: { other_than: 1, message: 'Select' } do
+  with_options presence: true, numericality: { other_than: 1, message: 'を選択してください' } do
     validates :category_id
     validates :item_status_id
     validates :delivery_fee_id
