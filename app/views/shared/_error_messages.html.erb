@@ -2,8 +2,6 @@
 <div class="error-alert">
   <ul>
     <% model.errors.full_messages.each do |message| %> 
-    <%# model.errors.full~の先頭のmodelはerrorを表示させたいビューに記述した<%= render 'shared/error_messages', model: f.object 
-    に記述しているmodel:という変数名を持ってきているのか。その場合は特定のモデルに依存せずに汎用的に使えるのでは？ %>
     <li class='error-message'><%= message %></li> 
     <% end %>
   </ul>
