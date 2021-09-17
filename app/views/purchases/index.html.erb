@@ -30,51 +30,24 @@
       </p>
     </div>
 
-
-    <%= form_with model: @purchase_address, url: item_purchases_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= form_with model: @purchase_address, url: item_purchases_path, class: 'transaction-form-wrap',local: true do |f| %>
       <%= render 'shared/error_messages', model: f.object %>
-      <div class='credit-card-form'>
-        <h1 class='info-input-haedline'>
-          クレジットカード情報入力
-        </h1>
-        <div class="form-group">
-          <div class='form-text-wrap'>
-            <label class="form-text">カード情報</label>
-            <span class="indispensable">必須</span>
-          </div>
-          <%= f.text_field :number, class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
-          <div class='available-card'>
-            <%= image_tag 'card-visa.gif', class: 'card-logo'%>
-            <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
-            <%= image_tag 'card-jcb.gif', class: 'card-logo'%>
-            <%= image_tag 'card-amex.gif', class: 'card-logo'%>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class='form-text-wrap'>
-            <label class="form-text">有効期限</label>
-            <span class="indispensable">必須</span>
-          </div>
-          <div class='input-expiration-date-wrap'>
-            <%= f.text_area :exp_month, class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
-            <p>月</p>
-            <%= f.text_area :exp_year, class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
-            <p>年</p>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class='form-text-wrap'>
-            <label class="form-text">セキュリティコード</label>
-            <span class="indispensable">必須</span>
-          </div>
-          <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
-        </div>
-      </div>
+
+      <% if current_user.cards.present? %>
+        <%= link_to(current_user) do %>
+          <span class='current-user-info'>マイページ</span>
+        <% end %>
+      <% else %>
+        <%= link_to(new_card_path, class: 'card-btn') do %>
+          <span class='card-btn-text'>クレジットカード情報を登録</span>
+        <% end %>
+      <% end %>
     
     <div class='shipping-address-form'>
       <h1 class='info-input-haedline'>
         配送先入力
       </h1>
+          
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">郵便番号</label>
@@ -122,7 +95,7 @@
     <div class='buy-btn'>
       <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
     </div>
-    <% end %>
+    <% end %>    
   </div>
 </div>
 <%= render "shared/second-footer"%>
