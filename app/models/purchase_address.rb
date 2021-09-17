@@ -6,7 +6,6 @@ class PurchaseAddress
 
   validates :prefecture_id, presence: true, numericality: {other_than: 1, message:"を入力してください"}
   with_options presence: true do
-    validates :token
     validates :item_id
     validates :user_id
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "は不正な値です。ハイフンを含めてください"}

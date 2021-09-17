@@ -1,14 +1,8 @@
 class UsersController < ApplicationController
 
-  def new
-    @user = User.new
-  end
-
-  def create
-  end
-
-
   def show
+    @nickname = current_user.nickname
+    
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     card = Card.find_by(user_id: current_user.id)
 

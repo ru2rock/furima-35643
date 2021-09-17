@@ -30,20 +30,24 @@
       </p>
     </div>
 
-    <%#if card.present? %>
-      <%= link_to(new_card_path, class: 'card-btn') do %>
-        <span class='card-btn-text'>クレジットカード情報登録</span>
-      <% end %>
-    <%# end %>
-
-
     <%= form_with model: @purchase_address, url: item_purchases_path, class: 'transaction-form-wrap',local: true do |f| %>
       <%= render 'shared/error_messages', model: f.object %>
+
+      <% if current_user.cards.present? %>
+        <%= link_to(current_user) do %>
+          <span class='current-user-info'>マイページ</span>
+        <% end %>
+      <% else %>
+        <%= link_to(new_card_path, class: 'card-btn') do %>
+          <span class='card-btn-text'>クレジットカード情報を登録</span>
+        <% end %>
+      <% end %>
     
     <div class='shipping-address-form'>
       <h1 class='info-input-haedline'>
         配送先入力
       </h1>
+          
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">郵便番号</label>
@@ -91,7 +95,7 @@
     <div class='buy-btn'>
       <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
     </div>
-    <% end %>
+    <% end %>    
   </div>
 </div>
 <%= render "shared/second-footer"%>

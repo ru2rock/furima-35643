@@ -5,24 +5,27 @@ class PurchasesController < ApplicationController
 
   def index
     @purchase_address = PurchaseAddress.new 
+    @card = Card.new
   end
 
   def create
-    @purchase_address = PurchaseAddress.new(purchase_params) 
-    if @purchase_address.valid? 
-      pay_item
-      @purchase_address.save
-     return redirect_to root_path
-    else
-      render :index
-    end
+    redirect to new_card_path and return unless current_user.card.present?
+
+    @purchase_address = PurchaseAddress.new(purchase_params)
+
+    @purchase_address.valid? 
+    pay_item
+    Purchase.create(item_id: params[:id])
+    @purchase_address.save
+    redirect_to root_path
+        
   end
 
   private
 
   def purchase_params
     params.require(:purchase_address).permit(:postal_code, :prefecture_id, :town, :plot_number, :building, :phone_number)
-    .merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    .merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
   def set_item
@@ -37,9 +40,10 @@ class PurchasesController < ApplicationController
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp::Charge.create(
+    customer_token = current_user.card.customer_token #顧客トークンを取得
+    Payjp::Charge.create( #PAYJPに購入価格と顧客トークン、通貨の種類を渡す
       amount: @item.price,
-      card: purchase_params[:token],
+      customer: customer_token,
       currency: 'jpy'
     )
   end

@@ -10,9 +10,9 @@ class CardsController < ApplicationController
       card: params[:token] # 登録しようとしているカード情報
     )
     card = Card.new(
-      card_token: params[:token],
-      customer_token: customer.id,
-      user_id: current_user.id
+      card_token: params[:token], #トークンを保存するカラム名:
+      customer_token: customer.id, #顧客idを保存するカラム名:
+      user_id: current_user.id 
     )
     if card.save!
     redirect_to root_path
