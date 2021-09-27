@@ -79,6 +79,10 @@ app/assets/stylesheets/items/new.css %>
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:delivery_day_id, DeliveryDay.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <div class="weight-bold-text">
+          タグ
+          <%= f.text_field :tag_ids, value: @tag_list, placeholder: "複数タグをつけるには','で区切る", class:"input-tag" %>
+        </div>
       </div>
     </div>
 
