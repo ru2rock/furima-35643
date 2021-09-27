@@ -131,7 +131,6 @@
                 <span>Sold Out!!</span>
               </div>
             <% end %>
-            
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
@@ -139,11 +138,18 @@
             </h3>
             <div class='item-price'>
               <span><%= item.price %>円<br><%= item.delivery_fee.name %></span>
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'>0</span>
-              </div>
             </div>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+            <ul class="tag">
+              <li class="tag-list">
+                <% item.tags.each do |tag| %>
+                  #<%= tag.name %>
+                <% end %>
+              </li>
+            </ul>
           </div>
         <% end %>
       </li>

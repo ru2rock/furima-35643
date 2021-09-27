@@ -308,4 +308,15 @@ a {
   font-size: 2vh;
 }
 
+.tag {
+  height: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+
+.tag-list {
+  margin-bottom: 10px;
+}
 /* //商品一覧 */

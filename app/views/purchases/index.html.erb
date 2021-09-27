@@ -7,9 +7,13 @@
     </h1>
 
     <div class='buy-item-info'>
-      <% @item.images.each do |image| %>
-        <%= image_tag image, class: 'buy-item-imgs' %>
-      <% end %>
+      <ul>
+        <% @item.images.each do |image| %>
+          <li>
+            <%= image_tag image, class: 'buy-item-imgs' %>
+          </li>
+        <% end %>
+      </ul>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
           <%= @item.title %>
@@ -33,7 +37,7 @@
     <%= form_with model: @purchase_address, url: item_purchases_path, class: 'transaction-form-wrap',local: true do |f| %>
       <%= render 'shared/error_messages', model: f.object %>
 
-      <% if current_user.cards.present? %>
+      <% if current_user.card.present? %>
         <%= link_to(current_user) do %>
           <span class='current-user-info'>マイページ</span>
         <% end %>
