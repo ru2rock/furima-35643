@@ -15,10 +15,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = ItemsTag.new(item_params)
-    tag_list = params[:item][:tagids].split(',')
+    @item = Item.new(item_params)
+    tag_list = params[:item][:tag_ids].split(',')
     if @item.save
-      @item.save_tags(tag_list)
+      @item.tags_save(tag_list)
       return redirect_to root_path
     else
       render :new
