@@ -20,7 +20,7 @@
         <%= f.file_field :images, name: 'item[images][]', id:"item-image" %>
           <div id="image-list"></div>
           <% @item.images.each do |image| %>
-            <%= image_tag image, class: 'item-imgs' %>
+            <%= image_tag image, class: 'item-img' %>
           <% end %>
       </div>
     </div>

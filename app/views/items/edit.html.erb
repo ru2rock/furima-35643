@@ -23,7 +23,7 @@ app/assets/stylesheets/items/new.css %>
         <%= f.file_field :images, name: 'item[images][]', id:"item-image" %>
         <div id="image-list"></div>
         <% @item.images.each do |image| %>
-          <%= image_tag image, class: 'item-imgs' %>
+          <%= image_tag image, class: 'item-img' %>
         <% end %>
       </div>
     </div>
@@ -137,7 +137,7 @@ app/assets/stylesheets/items/new.css %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する", class:"sell-btn" %>
-      <%=link_to 'もどる', item_path, class:"back-btn" %>
+      <%=link_to 'もどる', item_path(@item.id), class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
