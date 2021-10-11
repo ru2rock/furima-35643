@@ -123,7 +123,7 @@
         <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
             <% item.images.each do |image| %>
-              <%= image_tag image, class: "item-imgs" %>
+              <%= image_tag image, class: "item-img" %>
             <% end %>
 
             <%if item.purchase.present? %>
